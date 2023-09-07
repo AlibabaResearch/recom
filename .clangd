@@ -1,0 +1,2 @@
+CompileFlags:
+  Remove: [-nvcc_options=relaxed-constexpr, -nvcc_options=ftz=true]
