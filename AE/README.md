@@ -3,7 +3,7 @@
 The artifact contains the necessary software components to validate the main results in the RECom paper.
 We provide a Dockfile for users to build the docker image, which contains the basic environment used to build and run the RECom examples.
 
-Firstly, use the `Dockerfile` to build the docker image:
+Firstly, use the `Dockerfile` to build the docker image. Note: if the compute capability of your GPU is not 7.5 or 8.6, you should modify the `Dockerfile` correspondingly.
 
 ```bash
 docker build -t recom:latest
