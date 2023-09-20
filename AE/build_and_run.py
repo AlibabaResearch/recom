@@ -1,3 +1,14 @@
+# Copyright 2023 The RECom Authors. All rights reserved.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+# http://www.apache.org/licenses/LICENSE-2.0
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 import os
 import argparse
 
@@ -9,6 +20,13 @@ def os_check(command):
 
 
 if __name__ == "__main__":
+	parser = argparse.ArgumentParser()
+    parser.add_argument("--tf_cuda_cc", type=str, default="7.5,8.6")
+    args = parser.parse_args()
+
+    if args.tf_cuda_cc:
+        os.environment["TF_CUDA_COMPUTE_CAPABILITIES"] = args.tf_cuda_cc
+
     ae_dir = os.path.dirname(os.path.abspath(__file__))
     recom_dir = f"{ae_dir}/.."
 
@@ -21,8 +39,9 @@ if __name__ == "__main__":
     os.chdir(model_dir)
     os_check(f"python {recom_dir}/examples/python/dlrm.py")
 
-    # build RECom addon
+    # configure and build RECom addon
     os.chdir(recom_dir)
+    os_check("python configure.py")
     os_check("bazel build //tensorflow_addons:librecom.so")
     os_check("bazel build //tensorflow_addons:libtf_cpu_gpu.so")
 
@@ -30,9 +49,11 @@ if __name__ == "__main__":
     librecom_path = f"{addon_dir}/librecom.so"
     libtf_cpu_gpu_path = f"{addon_dir}/libtf_cpu_gpu.so"
 
-    # build TF cc examples
+    # configure and build TF cc examples
     tf_dir = f"{recom_dir}/examples/cc/tensorflow-v2.6.2"
     os.chdir(tf_dir)
+    os_check("../apply_patch.sh")
+    os_check("./configure")
     os_check('bazel build --config=cuda --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" //tensorflow/recom:benchmark_multi_thread')
     os_check('bazel build --config=cuda --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" //tensorflow/recom:benchmark_throughput')
 

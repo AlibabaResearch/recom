@@ -6,7 +6,7 @@ We provide a Dockfile for users to build the docker image, which contains the ba
 Firstly, use the `Dockerfile` to build the docker image. Note: if the compute capability of your GPU is not 7.5 or 8.6, you should modify the `Dockerfile` correspondingly.
 
 ```bash
-docker build -t recom:latest
+docker build -t recom:latest .
 ```
 
 Then you can launch the container:
@@ -16,7 +16,13 @@ docker run -d --gpus all --net=host --name recom_ae -it recom:latest
 docker exec -it recom_ae bash
 ```
 
-After launching the container, you can run a single script to perform the following steps:
+After launching the container, clone this repo:
+
+```bash
+git clone --branch features/dev_pan --recurse-submodules https://github.com/PanZaifeng/recom.git recom
+```
+
+Then you can run a single script to perform the following steps:
 
 1. Create the synthetic models E and F used in the paper.
 2. Build the RECom addon.
@@ -25,7 +31,14 @@ After launching the container, you can run a single script to perform the follow
 5. Draw the most important figures in the paper (Figures 10 and 11).
 
 ```bash
-python run_all.py
+python recom/AE/build_and_run.py
 ```
 
 Finally, you can open the generated figures to check the results.
+
+Alternatively, you can run the `run_all.sh` script to perform all of the above steps:
+
+```bash
+./run_all.sh
+```
+
