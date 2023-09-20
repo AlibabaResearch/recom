@@ -25,7 +25,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.tf_cuda_cc:
-        os.environment["TF_CUDA_COMPUTE_CAPABILITIES"] = args.tf_cuda_cc
+        os.environ["TF_CUDA_COMPUTE_CAPABILITIES"] = args.tf_cuda_cc
 
     ae_dir = os.path.dirname(os.path.abspath(__file__))
     recom_dir = f"{ae_dir}/.."
