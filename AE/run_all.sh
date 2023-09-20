@@ -14,4 +14,4 @@
 
 docker build -t recom:latest .
 docker run -d --gpus all --net=host --name recom_ae -it recom:latest
-docker exec -it recom_ae git clone --branch features/dev_pan --recurse-submodules https://github.com/PanZaifeng/recom.git recom && python recom/AE/build_and_run.py
+docker exec recom_ae bash -c "git clone --branch features/dev_pan --recurse-submodules https://github.com/PanZaifeng/recom.git recom && python recom/AE/build_and_run.py"
