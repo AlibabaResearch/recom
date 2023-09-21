@@ -19,7 +19,7 @@ docker exec -it recom_ae bash
 After launching the container, clone this repo:
 
 ```bash
-git clone --branch features/dev_pan --recurse-submodules https://github.com/PanZaifeng/recom.git recom
+git clone --recurse-submodules https://github.com/AlibabaResearch/recom.git recom
 ```
 
 Then you can run a single script to perform the following steps:
