@@ -20,13 +20,6 @@ def os_check(command):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--tf_cuda_cc", type=str, default="7.5,8.6")
-    args = parser.parse_args()
-
-    if args.tf_cuda_cc:
-        os.environ["TF_CUDA_COMPUTE_CAPABILITIES"] = args.tf_cuda_cc
-
     ae_dir = os.path.dirname(os.path.abspath(__file__))
     recom_dir = f"{ae_dir}/.."
 
