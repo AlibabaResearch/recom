@@ -10,7 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-docker build -t recom:latest .
+docker build -f ./Dockerfile -t recom:latest .
 docker run -d --gpus all --net=host --name recom_ae -it recom:latest
 docker exec recom_ae bash -c "git clone --recurse-submodules https://github.com/AlibabaResearch/recom.git recom && python recom/AE/build_and_run.py"
 docker cp recom_ae:recom/AE/latency.pdf .
