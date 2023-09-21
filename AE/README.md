@@ -3,10 +3,22 @@
 The artifact contains the necessary software components to validate the main results in the RECom paper.
 We provide a Dockfile for users to build the docker image, which contains the basic environment used to build and run the RECom examples.
 
-Firstly, use the `Dockerfile` to build the docker image. Note: if the compute capability of your GPU is not 7.5 or 8.6, you should modify the `Dockerfile` correspondingly.
+## Run with a single command
+
+We provide a single script to run RECom examples and reproduce Figures 10 and 11 in our paper. Note: if the compute capability of your GPU is not 7.5 or 8.6, you should modify the `Dockerfile` correspondingly.
+
+````bash
+./run_all.sh
+```
+
+## Run step by step
+
+You can also run RECom examples step by step.
+
+Firstly, use the `Dockerfile` to build the docker image.
 
 ```bash
-docker build -t recom:latest .
+docker build -f ./Dockerfile -t recom:latest .
 ```
 
 Then you can launch the container:
@@ -35,10 +47,4 @@ python recom/AE/build_and_run.py
 ```
 
 Finally, you can open the generated figures to check the results.
-
-Alternatively, you can run the `run_all.sh` script to perform all of the above steps:
-
-```bash
-./run_all.sh
-```
 
