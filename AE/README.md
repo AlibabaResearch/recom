@@ -7,7 +7,7 @@ We provide a Dockfile for users to build the docker image, which contains the ba
 
 We provide a single script to run RECom examples and reproduce Figures 10 and 11 in our paper. Note: if the compute capability of your GPU is not 7.5 or 8.6, you should modify the `Dockerfile` correspondingly.
 
-````bash
+```bash
 ./run_all.sh
 ```
 
