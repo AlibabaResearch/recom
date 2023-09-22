@@ -199,8 +199,8 @@ if __name__ == '__main__':
     # then use bucketization to transform them into sparse features. We observe 
     # these features can account for the vast majority of all features in many 
     # industrial models.
-    for args in [(880, 50, 50, 15, 5, 32, [32], [1024, 1024, 128], 'DLRM1'),
-                 (1000, 90, 100, 7, 3, 32, [32], [2048, 1024, 1024, 512], 'DLRM2')]:
+    for args in [(880, 50, 50, 15, 5, 32, [32], [1024, 1024, 128], 'E'),
+                 (1000, 90, 100, 7, 3, 32, [32], [2048, 1024, 1024, 512], 'F')]:
         print(f'Creating {args[-1]}')
         p = Process(target=create_dlrm, args=args)
         p.start()
