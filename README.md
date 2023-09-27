@@ -21,10 +21,10 @@ We also utilize the [SymEngine Library](https://github.com/symengine/symengine) 
 
 We evaluate RECom on four real-world in-house production recommendation models in Alibaba and two synthesized models.
 Experimental results show that for all models under any batch size, RECom outperforms the three TensorFlow baselines significantly.
-On average, RECom achieves speedups of 6.61$\times$, 51.45$\times$, and 8.96$\times$ for end-to-end inference latency compared with TF-CPU, TF-GPU, and TF-CPU-GPU, respectively.
+On average, RECom achieves speedups of 6.61×, 51.45×, and 8.96× for end-to-end inference latency compared with TF-CPU, TF-GPU, and TF-CPU-GPU, respectively.
 
 <figure align="center">
-  <img src="./docs/assets/latency.png" style="width:80%">
+  <img src="./docs/assets/latency.png" style="width:100%">
   <figcaption align = "center">
   <b>
   Figure 1: End-to-end Performance of RECom and TensorFlow baselines.
@@ -38,6 +38,4 @@ On average, RECom achieves speedups of 6.61$\times$, 51.45$\times$, and 8.96$\ti
 RECom is a collaborated research project between Alibaba Group and Renmin University of China.
 The paper has been submitted to ASPLOS'23 Fall, accepted after major revision, and will appear together with ASPLOS'24.
 
-**[ASPLOS'23] (to appear with ASPLOS'24) RECom: A Compiler Approach to Accelerating Recommendation Model Inference with Massive Embedding Columns**
-
-Zaifeng Pan, Zhen Zheng, Feng Zhang, Ruofan Wu, Hao Liang, Dalin Wang, Xiafei Qiu, Junjie Bai, Wei Lin, Xiaoyong Du
+Zaifeng Pan, Zhen Zheng, Feng Zhang, Ruofan Wu, Hao Liang, Dalin Wang, Xiafei Qiu, Junjie Bai, Wei Lin, Xiaoyong Du. RECom: A Compiler Approach to Accelerating Recommendation Model Inference with Massive Embedding Columns (ASPLOS'23, to appear with ASPLOS'24) 
