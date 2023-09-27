@@ -1,59 +1,43 @@
 # RECom
 
-RECom is an ML compiler that aims to accelerate the expensive embedding column processing during the inference of deep recommendation models. It fuses massive embedding columns into a single kernel and maps each column into a separate threadblock on the GPU.
+RECom is an ML compiler that aims to accelerate the expensive embedding column processing during the inference of deep recommendation models.
+Key features of RECom:
+
+* We propose the inter-subgraph parallelism-oriented fusion method to generate efficient GPU codes to process massive embedding columns in parallel.
+* We recognize the shape computation problems that arise in dynamic shape scenarios and adopt an approach based on symbolic expressions to solve them.
+* We develop an embedding column optimization module to eliminate redundant computations.
 
 Currently, RECom is implemented as a TensorFlow add-on based on [TensorFlow Addons](https://github.com/tensorflow/addons) using C++.
 We also utilize the [SymEngine Library](https://github.com/symengine/symengine) to perform symbolic expression computations to handle dynamic shapes.
 
-## Build RECom
+## Getting Started
 
-We highly recommend building RECom in the docker `nvidia/cuda:11.3.1-cudnn8-devel-ubuntu18.04`, as the compatibility of RECom has not been checked yet.
+* [Build RECom from source](docs/build_from_source.md)
+* [C++ examples](examples/cc)
+* [Python examples](examples/python)
+* [RECom Artifact Evaluation](AE)
 
-You should prepare the following environments before building RECom:
+## Performance
 
-* Python 3.8
+We evaluate RECom on four real-world in-house production recommendation models in Alibaba and two synthesized models.
+Experimental results show that for all models under any batch size, RECom outperforms the three TensorFlow baselines significantly.
+On average, RECom achieves speedups of 6.61$\times$, 51.45$\times$, and 8.96$\times$ for end-to-end inference latency compared with TF-CPU, TF-GPU, and TF-CPU-GPU, respectively.
 
-* TensorFlow 2.6.2
-
-* Bazel 4.2.1 ([bazelisk](https://github.com/bazelbuild/bazelisk) is recommended)
-
-You should also download the libgmp-dev, which is required by SymEngine:
-
-```bash
-apt-get install libgmp-dev
-```
-
-After preparing the environments, you should set some environment variables and run the `configure.py` to generate the `.bazelrc`:
-
-```bash
-export TF_NEED_CUDA="1"
-
-# Set these if the below defaults are different on your system
-export TF_CUDA_VERSION="11"
-export TF_CUDNN_VERSION="8"
-export CUDA_TOOLKIT_PATH="/usr/local/cuda"
-export CUDNN_INSTALL_PATH="/usr/lib/x86_64-linux-gnu"
-
-python ./configure.py
-```
-
-Then, you can start building the shared library of RECom:
-
-```bash
-bazel build //tensorflow_addons:librecom.so
-```
-
-Finally, you will find the target `librecom.so` in `bazel-bin/tensorflow_addons`.
-
-## Usage
-
-You can use `tf.load_op_library`/`TF_LoadLibrary` in your Python/C++ inference scripts to load the TensorFlow addon of RECom without modifying any source codes of the models.
-Then, the models will be optimized automatically (warm-up required).
-
-More details can be found in the `examples` folder.
+<figure align="center">
+  <img src="./docs/assets/latency.png" style="width:80%">
+  <figcaption align = "center">
+  <b>
+  Figure 1: End-to-end Performance of RECom and TensorFlow baselines.
+  The vertical axes are latency in the log scale.
+  </b>
+  </figcaption>
+</figure>
 
 ## Publication
 
-**[ASPLOS'24] RECom: A Compiler Approach to Accelerating Recommendation Model Inference with Massive Embedding Columns**
+RECom is a collaborated research project between Alibaba Group and Renmin University of China.
+The paper has been submitted to ASPLOS'23 Fall, accepted after major revision, and will appear together with ASPLOS'24.
+
+**[ASPLOS'23] (to appear with ASPLOS'24) RECom: A Compiler Approach to Accelerating Recommendation Model Inference with Massive Embedding Columns**
 
 Zaifeng Pan, Zhen Zheng, Feng Zhang, Ruofan Wu, Hao Liang, Dalin Wang, Xiafei Qiu, Junjie Bai, Wei Lin, Xiaoyong Du
