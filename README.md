@@ -10,6 +10,15 @@ Key features of RECom:
 Currently, RECom is implemented as a TensorFlow add-on based on [TensorFlow Addons](https://github.com/tensorflow/addons) using C++.
 We also utilize the [SymEngine Library](https://github.com/symengine/symengine) to perform symbolic expression computations to handle dynamic shapes.
 
+<figure align="center">
+  <img src="./docs/assets/recom_workflow.png" style="width:100%">
+  <figcaption align = "center">
+  <b>
+  The optimization workflow of RECom.
+  </b>
+  </figcaption>
+</figure>
+
 ## Getting Started
 
 * [Build RECom from source](docs/build_from_source.md)
@@ -27,7 +36,7 @@ On average, RECom achieves speedups of 6.61×, 51.45×, and 8.96× for end-to-en
   <img src="./docs/assets/latency.png" style="width:100%">
   <figcaption align = "center">
   <b>
-  Figure 1: End-to-end Performance of RECom and TensorFlow baselines.
+  End-to-end Performance of RECom and TensorFlow baselines.
   The vertical axes are latency in the log scale.
   </b>
   </figcaption>
