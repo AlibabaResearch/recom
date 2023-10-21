@@ -54,8 +54,14 @@ def read_data(models, log_dir, batch_sizes):
         for bar, target in zip(bars, targets):
             for bs in batch_sizes:
                 log = f"{log_dir}/l_{target}_{model}_{bs}.log"
-                lat = float(os.popen(
-                    f"grep 'average latency' {log} | awk '{{print $14}}'").read())
+                try:
+                    lat = float(os.popen(
+                        f"grep 'average latency' {log} | awk '{{print $14}}'").read())
+                except ValueError as e:
+                    print(f"Error: {e}")
+                    print(f"Cannot read data correctly. Please check log {log}")
+                    print(f"Assign zero to the bar")
+                    lat = 0
                 bar.append(lat)
         data_list.append(bars)
     return data_list
