@@ -51,9 +51,15 @@ def read_data(models, log_dir, workers):
         for bar, target in zip(bars, targets):
             for w in workers:
                 log = f"{log_dir}/t_{target}_{model}_{w}.log"
-                lat = float(os.popen(
-                    f"grep 'max_throughput' {log} | awk '{{print $10}}'").read())
-                bar.append(lat)
+                try:
+                    thrpt = float(os.popen(
+                        f"grep 'max_throughput' {log} | awk '{{print $10}}'").read())
+                except ValueError as e:
+                    print(f"Error: {e}")
+                    print(f"Cannot read data correctly. Please check log {log}")
+                    print(f"Assign zero to the bar")
+                    thrpt = 0
+                bar.append(thrpt)
         data_list.append(bars)
     return data_list
 
