@@ -38,9 +38,20 @@ On average, RECom achieves speedups of 6.61×, 51.45×, and 8.96× for end-to-en
   </b></p>
 </p>
 
-## Publication
+## Citation 
 
-RECom is a collaborated research project between Alibaba Group and Renmin University of China.
-The paper has been submitted to ASPLOS'23 Fall, accepted after major revision, and will appear together with ASPLOS'24.
+RECom is a collaborative research project between Alibaba Group and Renmin University of China.
+You can find our ASPLOS'23 paper in this [link](https://dl.acm.org/doi/10.1145/3623278.3624761).
 
-Zaifeng Pan, Zhen Zheng, Feng Zhang, Ruofan Wu, Hao Liang, Dalin Wang, Xiafei Qiu, Junjie Bai, Wei Lin, Xiaoyong Du. *RECom: A Compiler Approach to Accelerating Recommendation Model Inference with Massive Embedding Columns.* (ASPLOS'23, to appear with ASPLOS'24) 
+If you use this codebase or otherwise found our work valuable, please cite:
+
+```bibtex
+@inproceedings{pan2023recom,
+  title={RECom: A Compiler Approach to Accelerating Recommendation Model Inference with Massive Embedding Columns},
+  author={Pan, Zaifeng and Zheng, Zhen and Zhang, Feng and Wu, Ruofan and Liang, Hao and Wang, Dalin and Qiu, Xiafei and Bai, Junjie and Lin, Wei and Du, Xiaoyong},
+  booktitle={Proceedings of the 28th ACM International Conference on Architectural Support for Programming Languages and Operating Systems, Volume 4},
+  pages={268--286},
+  year={2023}
+}
+```
+
