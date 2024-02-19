@@ -41,7 +41,7 @@ On average, RECom achieves speedups of 6.61×, 51.45×, and 8.96× for end-to-en
 ## Citation 
 
 RECom is a collaborative research project between Alibaba Group and Renmin University of China.
-You can find our paper in this [link](https://dl.acm.org/doi/10.1145/3623278.3624761).
+You can find our ASPLOS'23 paper in this [link](https://dl.acm.org/doi/10.1145/3623278.3624761).
 
 If you use this codebase or otherwise found our work valuable, please cite:
 
