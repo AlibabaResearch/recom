@@ -4,7 +4,7 @@ RUN apt-get update
 
 # install python3.8 and pip
 RUN apt-get install -y curl python3.8 python3.8-distutils
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+RUN curl https://bootstrap.pypa.io/pip/3.8/get-pip.py -o get-pip.py
 RUN python3.8 get-pip.py
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
 
